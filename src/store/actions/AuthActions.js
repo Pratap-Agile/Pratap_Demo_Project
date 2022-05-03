@@ -1,7 +1,6 @@
 import axios from "axios";
 import {
   formatError,
-  login,
   runLogoutTimer,
   saveTokenInLocalStorage,
   signUp,
@@ -40,36 +39,31 @@ export function logout(history) {
   };
 }
 
-export const loginAction = (email, password) => (dispatch) => {
-  return axios
-    .post(
+export const loginAction = (email, password) => async (dispatch) => {
+  try {
+    const response = await axios.post(
       `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBDY1MBLGYoD3YW69ZA-KR_LLL1W0V2U6s
       `,
       { email, password, returnSecureToken: true }
-    )
-    .then((response) => {
-      localStorage.setItem("authToken", JSON.stringify(response.data.idToken));
-      localStorage.setItem("user", JSON.stringify(response.data));
-      dispatch(loginConfirmedAction(response.data));
-      return response.data;
-    })
-    .catch((error) => {
-      console.log(error);
-      const errorMessage = formatError(error.response?.data);
-      dispatch(loginFailedAction(errorMessage));
-      if (error instanceof Response) {
-        switch (error.status) {
-          case 401:
-            throw new Error("Invalid login credentials");
-          /* ... */
-          default:
-            throw new Error(
-              `Unknown server error occured: ${error.statusText}`
-            );
-        }
+    );
+    localStorage.setItem("authToken", JSON.stringify(response.data.idToken));
+    localStorage.setItem("user", JSON.stringify(response.data));
+    dispatch(loginConfirmedAction(response.data));
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    const errorMessage = formatError(error.response?.data);
+    dispatch(loginFailedAction(errorMessage));
+    if (error instanceof Response) {
+      switch (error.status) {
+        case 401:
+          throw new Error("Invalid login credentials");
+        default:
+          throw new Error(`Unknown server error occured: ${error.statusText}`);
       }
-      throw new Error(`Something went wrong: ${error.message || error}`);
-    });
+    }
+    throw new Error(`Something went wrong: ${error.message || error}`);
+  }
 };
 
 export function loginFailedAction(data) {

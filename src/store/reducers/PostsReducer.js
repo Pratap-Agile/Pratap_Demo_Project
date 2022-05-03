@@ -50,7 +50,6 @@ export default function PostsReducer(state = initialState, actions) {
     };
   }
 
-  //display add
   if (actions.type === DISPLAY_GET_POSTS) {
     const posts = [...state.posts];
     const postIndex = posts.findIndex((post) => post.id === actions.payload.id);
