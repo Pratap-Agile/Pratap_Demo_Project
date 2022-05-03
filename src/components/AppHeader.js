@@ -40,9 +40,6 @@ const AppHeader = () => {
               Dashboard
             </CNavLink>
           </CNavItem>
-          {/* <CNavItem>
-            <CNavLink href="#">Logout</CNavLink>
-          </CNavItem> */}
         </CHeaderNav>
         {/* <CHeaderNav>
           <CNavItem>
