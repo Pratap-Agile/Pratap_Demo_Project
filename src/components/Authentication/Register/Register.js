@@ -5,7 +5,6 @@ import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOut
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-// import axios from 'axios'
 
 import { connect, useDispatch, useSelector } from "react-redux";
 import {
@@ -113,12 +112,7 @@ const Register = (props) => {
                 placeholder="Confirm your password"
                 helperText={<ErrorMessage name="confirmPassword" />}
               />
-              <Button
-                type="submit"
-                variant="contained"
-                //disabled={props.isSubmitting}
-                color="primary"
-              >
+              <Button type="submit" variant="contained" color="primary">
                 Register
               </Button>
             </Form>

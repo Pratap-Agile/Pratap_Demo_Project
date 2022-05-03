@@ -3,8 +3,6 @@ import { Grid, Paper, Button } from "@material-ui/core";
 import { Formik, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-
-// import { createPostAction } from "src/store/actions/PostActions";
 import { createPostAction } from "../../../../store/actions/PostActions";
 
 import {
@@ -16,12 +14,10 @@ import {
   Textarea,
   TextInput,
 } from "@contentful/f36-forms";
-import axios from "axios";
 
 const CreatePost = (props) => {
   const navigate = useNavigate();
 
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const paperStyle = { padding: 20, width: 400, margin: "50px auto" };
@@ -50,7 +46,7 @@ const CreatePost = (props) => {
       myfile: data.myfile,
     };
     console.log(userData);
-    dispatch(createPostAction(userData, props.history));
+    dispatch(createPostAction(userData));
     navigate("/theme/post/");
   };
 
@@ -60,11 +56,7 @@ const CreatePost = (props) => {
         <Grid align="center">
           <h2 style={headerStyle}>User Form</h2>
         </Grid>
-        <Formik
-          onSubmit={onSubmit}
-          initialValues={initialValues}
-          // validationSchema={CreateSchema}
-        >
+        <Formik onSubmit={onSubmit} initialValues={initialValues}>
           {({ handleSubmit }) => (
             <Form onSubmit={handleSubmit}>
               <Field name="textInput" validate={validateRequired}>
@@ -77,16 +69,10 @@ const CreatePost = (props) => {
               </Field>
 
               <Field name="textarea" validate={validateRequired}>
-                {({ field, meta }) => (
-                  <FormControl isInvalid={Boolean(meta.touched && meta.error)}>
+                {({ field }) => (
+                  <FormControl>
                     <FormControl.Label>Address</FormControl.Label>
                     <Textarea {...field} />
-
-                    {meta.touched && meta.error && (
-                      <FormControl.ValidationMessage>
-                        {meta.error}
-                      </FormControl.ValidationMessage>
-                    )}
                   </FormControl>
                 )}
               </Field>
@@ -94,7 +80,7 @@ const CreatePost = (props) => {
               <label> City : </label>
               <br />
               <Field name="select" validate={validateRequired}>
-                {({ field, meta }) => (
+                {({ field }) => (
                   <FormControl>
                     <Select {...field}>
                       <Select.Option value="" isDisabled Select>
@@ -104,11 +90,6 @@ const CreatePost = (props) => {
                       <Select.Option value="Broda">Broda</Select.Option>
                       <Select.Option value="Mumbai">Mumbai</Select.Option>
                     </Select>
-                    {meta.touched && meta.error && (
-                      <FormControl.ValidationMessage>
-                        {meta.error}
-                      </FormControl.ValidationMessage>
-                    )}
                   </FormControl>
                 )}
               </Field>

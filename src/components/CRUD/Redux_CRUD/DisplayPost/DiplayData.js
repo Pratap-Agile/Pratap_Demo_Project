@@ -9,19 +9,13 @@ const DisplatData = () => {
 
   const { id } = useParams();
   const [user, setUser] = useState({});
-  {
-    console.log(id);
-  }
-  console.log("user", setUser);
 
   useEffect(() => {
     axiosInstance.get(`crud/${id}`).then((res) => setUser(res.data));
   }, []);
-  console.log("user", user);
   return (
     <Grid>
       <Paper style={paperStyle}>
-        <Grid>{/* <h2>User Data </h2> */}</Grid>
         <div class="card">
           <div class="card-header lead">User Detail</div>
           <div class="card-body">

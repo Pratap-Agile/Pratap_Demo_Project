@@ -3,11 +3,7 @@ import { Grid, Paper, TextField, Button } from "@material-ui/core";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { connect, useDispatch, useSelector } from "react-redux";
-import {
-  loginAction,
-  loginConfirmedAction,
-} from "../../../store/actions/AuthActions";
-
+import { loginAction } from "../../../store/actions/AuthActions";
 import Loader from "../../Loader/Loader";
 import { useNavigate } from "react-router-dom";
 

@@ -1,14 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Grid, Paper, TextField, Button } from "@material-ui/core";
+import { Grid, Paper, Button } from "@material-ui/core";
 import { Formik, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import axiosInstance from "src/services/AxiosInstance";
-import {
-  displayPostAction,
-  updatePostAction,
-} from "../../../../store/actions/PostActions";
-
-// import { getPost } from "../../../store/selectors/PostSelectors";
+import { displayPostAction } from "../../../../store/actions/PostActions";
 
 import {
   Checkbox,
@@ -19,7 +14,6 @@ import {
   Textarea,
   TextInput,
 } from "@contentful/f36-forms";
-import axios from "axios";
 
 import { useNavigate, useParams } from "react-router";
 
@@ -27,7 +21,6 @@ function EditPost(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const validateRequired = (value) => !value;
-  // const filesharhe_ref = useRef();
 
   let { id } = useParams();
   const [initialValues, setInitialValues] = useState({});
@@ -80,15 +73,9 @@ function EditPost(props) {
                 onChange={(e) => onInputChange(e)}
               >
                 {({ field, meta }) => (
-                  <FormControl isInvalid={Boolean(meta.touched && meta.error)}>
+                  <FormControl>
                     <FormControl.Label>Name</FormControl.Label>
                     <TextInput {...field} />
-
-                    {meta.touched && meta.error && (
-                      <FormControl.ValidationMessage>
-                        {meta.error}
-                      </FormControl.ValidationMessage>
-                    )}
                   </FormControl>
                 )}
               </Field>
@@ -98,16 +85,10 @@ function EditPost(props) {
                 validate={validateRequired}
                 onChange={(e) => onInputChange(e)}
               >
-                {({ field, meta }) => (
-                  <FormControl isInvalid={Boolean(meta.touched && meta.error)}>
+                {({ field }) => (
+                  <FormControl>
                     <FormControl.Label>Address</FormControl.Label>
                     <Textarea {...field} />
-
-                    {meta.touched && meta.error && (
-                      <FormControl.ValidationMessage>
-                        {meta.error}
-                      </FormControl.ValidationMessage>
-                    )}
                   </FormControl>
                 )}
               </Field>
@@ -174,7 +155,6 @@ function EditPost(props) {
               />
               <ErrorMessage name="myfile" />
               <br />
-
               <Button variant="contained" type="submit" color="primary">
                 Submit
               </Button>

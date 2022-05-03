@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Table, Button } from "semantic-ui-react";
-import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {
-  deletePostAction,
-  displayPostAction,
-  getPostsAction,
-} from "src/store/actions/PostActions";
-import { useNavigate } from "react-router";
+import { deletePostAction } from "src/store/actions/PostActions";
 import axiosInstance from "src/services/AxiosInstance";
 
 export default function Post(props) {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [apiData, setApiData] = useState([]);
 
@@ -37,19 +30,9 @@ export default function Post(props) {
     localStorage.setItem("CHECKBOXGROUP", checkboxGroup);
     localStorage.setItem("MYFILE", myfile);
   };
-
-  const getData = () => {
-    setApiData(dispatch(getPostsAction()));
-  };
-
   const onDelete = (id) => {
     dispatch(deletePostAction(id, props.history));
-    // navigate("/theme/post/read");
   };
-  // const onDisplay = (id) => {
-  //   dispatch(displayPostAction(id, props.history));
-  //   // navigate("/theme/post/read");
-  // };
 
   return (
     <div>
