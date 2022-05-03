@@ -46,6 +46,7 @@ export default function Post(props) {
             <Table.HeaderCell>SELECT</Table.HeaderCell>
             <Table.HeaderCell>CHECKBOXGROUP</Table.HeaderCell>
             <Table.HeaderCell>MYFILE</Table.HeaderCell>
+            <Table.HeaderCell>ACTIONS</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 

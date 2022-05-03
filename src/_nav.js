@@ -1,6 +1,6 @@
 import React from "react";
 import CIcon from "@coreui/icons-react";
-import { cilSpeedometer, cilStar } from "@coreui/icons";
+import { cilSpeedometer, cilStar, cilEnvelopeOpen } from "@coreui/icons";
 import { CNavGroup, CNavItem, CNavTitle } from "@coreui/react";
 
 const _nav = [
@@ -21,7 +21,7 @@ const _nav = [
   {
     component: CNavGroup,
     name: "Redux Crud",
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilEnvelopeOpen} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
@@ -42,7 +42,7 @@ const _nav = [
   {
     component: CNavGroup,
     name: "Firebase Crud",
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilEnvelopeOpen} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
@@ -64,7 +64,7 @@ const _nav = [
   {
     component: CNavGroup,
     name: "Pages",
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilEnvelopeOpen} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
