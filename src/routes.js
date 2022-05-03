@@ -2,12 +2,11 @@ import React from "react";
 
 const Dashboard = React.lazy(() => import("./views/dashboard/Dashboard"));
 const Colors = React.lazy(() => import("./views/theme/colors/Colors"));
-const Post = React.lazy(() => import("./components/CRUD/Redux_CRUD/Post/Post"));
 const Typography = React.lazy(() =>
   import("./views/theme/typography/Typography")
 );
-//change
-
+//redux post component
+const Post = React.lazy(() => import("./components/CRUD/Redux_CRUD/Post/Post"));
 const CreatePost = React.lazy(() =>
   import("./components/CRUD/Redux_CRUD/CreatePost/CreatePost")
 );
@@ -80,7 +79,6 @@ const Select = React.lazy(() => import("./views/forms/select/Select"));
 const Validation = React.lazy(() =>
   import("./views/forms/validation/Validation")
 );
-
 const Charts = React.lazy(() => import("./views/charts/Charts"));
 
 // Icons
@@ -101,22 +99,20 @@ const Widgets = React.lazy(() => import("./views/widgets/Widgets"));
 const routes = [
   { path: "/", exact: true, name: "Home" },
   { path: "/dashboard", name: "Dashboard", element: Dashboard },
-
   { path: "/theme", name: "Theme", element: Colors, exact: true },
   { path: "/theme/colors", name: "Colors", element: Colors },
+
+  //redux crud path
   { path: "/theme/post", name: "User", element: Post },
   { path: "/theme/createpost", name: "createpost", element: CreatePost },
   { path: "/theme/editpost/:id", name: "editpost", element: EditPost },
   { path: "/theme/displaydata/:id", name: "displaydata", element: DisplatData },
 
-  //firebase path
+  //firebase crud path
   { path: "/firebase/add", name: "Add", element: Add },
   { path: "/firebase/view/:id", name: "View", element: View },
   { path: "/firebase/update/:id", name: "AddEdit", element: AddEdit },
   { path: "/firebase/read", name: "FirebaseRead", element: FirebaseRead },
-
-  // { path: "/adduser", name: "AddUser", element: Create, exact: true },
-  // // { path: "/theme/adduser", name: "AddUser", element: Create },
 
   { path: "/theme/typography", name: "Typography", element: Typography },
   { path: "/base", name: "Base", element: Cards, exact: true },
@@ -175,10 +171,6 @@ const routes = [
   { path: "/notifications/modals", name: "Modals", element: Modals },
   { path: "/notifications/toasts", name: "Toasts", element: Toasts },
   { path: "/widgets", name: "Widgets", element: Widgets },
-
-  // { path: "/theme/AddUser", name: "Create", element: Create },
-  // { path: "AddUser/Read", name: "Read", element: Read },
-  // { path: "AddUser/Update", name: "Update", element: Update },
 ];
 
 export default routes;

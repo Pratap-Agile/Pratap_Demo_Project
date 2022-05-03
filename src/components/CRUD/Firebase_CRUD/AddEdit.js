@@ -8,7 +8,6 @@ import { RadioButton } from "primereact/radiobutton";
 
 const AddEdit = () => {
   const navigate = useNavigate();
-  const [initialState, setState] = useState(values);
   const [data, setData] = useState({});
   const paperStyle = { padding: 10, width: 500, margin: "20px auto" };
   const values = {
@@ -20,6 +19,7 @@ const AddEdit = () => {
     fruits: "",
     file: "",
   };
+  const [initialState, setState] = useState(values);
   const { fullName, mobile, email, gender, address, fruits, file } =
     initialState;
 
