@@ -16,17 +16,17 @@ const DisplatData = () => {
   return (
     <Grid>
       <Paper style={paperStyle}>
-        <div class="card">
-          <div class="card-header lead">User Detail</div>
-          <div class="card-body">
-            <p class="card-text">Name : {user.textInput}</p>
-            <p class="card-text">Address : {user.textarea}</p>
-            <p class="card-text">City : {user.select}</p>
-            <p class="card-text">Gender : {user.radioGroup}</p>
-            <p class="card-text">Hobbies : {user.checkboxGroup}</p>
-            <p class="card-text">File : {user.myfile}</p>
+        <div className="card">
+          <div className="card-header lead">User Detail</div>
+          <div className="card-body">
+            <p className="card-text">Name : {user.textInput}</p>
+            <p className="card-text">Address : {user.textarea}</p>
+            <p className="card-text">City : {user.select}</p>
+            <p className="card-text">Gender : {user.radioGroup}</p>
+            <p className="card-text">Hobbies : {user.checkboxGroup}</p>
+            <p className="card-text">File : {user.myfile}</p>
             <Link to="/theme/post">
-              <a className="btn btn-info">Go Back</a>
+              <p className="btn btn-info">Go Back</p>
             </Link>
           </div>
         </div>

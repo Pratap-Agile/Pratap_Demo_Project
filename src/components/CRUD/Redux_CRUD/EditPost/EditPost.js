@@ -106,8 +106,8 @@ function EditPost(props) {
                       <Select.Option value="" isDisabled Select>
                         Select City
                       </Select.Option>
+                      <Select.Option value="Bhavnagar">Bhavnagar</Select.Option>
                       <Select.Option value="Ahemdabad">Ahemdabad</Select.Option>
-                      <Select.Option value="Broda">Broda</Select.Option>
                       <Select.Option value="Mumbai">Mumbai</Select.Option>
                     </Select>
                   </FormControl>

@@ -40,12 +40,12 @@ export default function Post(props) {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>ID</Table.HeaderCell>
-            <Table.HeaderCell>TEXTINPUT</Table.HeaderCell>
-            <Table.HeaderCell>TEXTAREA</Table.HeaderCell>
-            <Table.HeaderCell>RADIOGROUP</Table.HeaderCell>
-            <Table.HeaderCell>SELECT</Table.HeaderCell>
-            <Table.HeaderCell>CHECKBOXGROUP</Table.HeaderCell>
-            <Table.HeaderCell>MYFILE</Table.HeaderCell>
+            <Table.HeaderCell>Name</Table.HeaderCell>
+            <Table.HeaderCell>Address</Table.HeaderCell>
+            <Table.HeaderCell>Gender</Table.HeaderCell>
+            <Table.HeaderCell>City</Table.HeaderCell>
+            <Table.HeaderCell>Hobbies</Table.HeaderCell>
+            <Table.HeaderCell>Myfile</Table.HeaderCell>
             <Table.HeaderCell>ACTIONS</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
@@ -88,9 +88,9 @@ export default function Post(props) {
                   </Button>
                 </Table.Cell>
                 <Table.Cell>
-                  <Button color="blue">
-                    <NavLink to={`/theme/displaydata/${data.id}`}>View</NavLink>
-                  </Button>
+                  <Link to={`/theme/displaydata/${data.id}`}>
+                    <Button>View</Button>
+                  </Link>
                 </Table.Cell>
               </Table.Row>
             );

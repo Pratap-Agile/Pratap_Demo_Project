@@ -1,25 +1,13 @@
 import React from "react";
 import {
   CAvatar,
-  CBadge,
   CDropdown,
-  CDropdownDivider,
   CDropdownHeader,
   CDropdownItem,
   CDropdownMenu,
   CDropdownToggle,
 } from "@coreui/react";
-import {
-  cilBell,
-  cilCreditCard,
-  cilCommentSquare,
-  cilEnvelopeOpen,
-  cilFile,
-  cilLockLocked,
-  cilSettings,
-  cilTask,
-  cilUser,
-} from "@coreui/icons";
+import { cilLockLocked } from "@coreui/icons";
 import CIcon from "@coreui/icons-react";
 
 import avatar8 from "./../../assets/images/avatars/8.jpg";
@@ -36,7 +24,7 @@ const AppHeaderDropdown = () => {
         </CDropdownHeader>
         <CDropdownItem href="#">
           <CIcon icon={cilLockLocked} className="me-2" />
-          Logout
+          Account
         </CDropdownItem>
       </CDropdownMenu>
     </CDropdown>

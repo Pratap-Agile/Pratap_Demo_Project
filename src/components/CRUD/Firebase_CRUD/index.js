@@ -43,7 +43,6 @@ const ListRecord = () => {
                   <th scope="col">Email</th>
                   <th scope="col">Gender</th>
                   <th scope="col">Address</th>
-                  {/* <th scope="col">File</th> */}
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -57,7 +56,6 @@ const ListRecord = () => {
                       <td>{data[id].email}</td>
                       <td>{data[id].gender}</td>
                       <td>{data[id].address}</td>
-                      {/* <td>{data[id].file}</td> */}
                       <td>
                         <Link to={`/firebase/update/${id}`}>
                           <a className="btn text-primary">
