@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
-// import firebaseDb from "../firebase";
-import firebaseDb from "../../firebase";
+import firebaseDb from "../../../firebase";
 import { useParams } from "react-router-dom";
 import { isEmpty } from "lodash";
 import { useNavigate } from "react-router";
-
-//meterial ui
 import { Grid, Paper, TextField, Button } from "@material-ui/core";
-
-//input
 import { RadioButton } from "primereact/radiobutton";
 
 const AddEdit = () => {
   const navigate = useNavigate();
+  const [initialState, setState] = useState(values);
+  const [data, setData] = useState({});
+  const paperStyle = { padding: 10, width: 500, margin: "20px auto" };
   const values = {
     fullName: "",
     mobile: "",
@@ -22,32 +20,11 @@ const AddEdit = () => {
     fruits: "",
     file: "",
   };
-
-  //card style
-  const paperStyle = { padding: 10, width: 500, margin: "20px auto" };
-  const headerStyle = { margin: 0 };
-
-  //Values for dropdown
-  const languageSelectItems = [
-    { label: "Javascript", value: "JS" },
-    { label: "PHP", value: "PHP" },
-    { label: "Java", value: "JAVA" },
-  ];
-
-  const [initialState, setState] = useState(values);
-  const [data, setData] = useState({});
-
-  //   console.log("currentId", currentId);
-
   const { fullName, mobile, email, gender, address, fruits, file } =
     initialState;
 
   const currentId = useParams();
-  // const history = useHistory();
-
   const { id } = currentId;
-
-  console.log("currentId", currentId);
 
   useEffect(() => {
     firebaseDb.child("contacts").on("value", (snapshot) => {
@@ -95,7 +72,6 @@ const AddEdit = () => {
         }
       });
     }
-    // history.push("/");
     navigate("/firebase/read");
   };
 

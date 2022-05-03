@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axiosInstance from "src/services/axiosInstance";
 import { Grid, Paper } from "@material-ui/core";
 

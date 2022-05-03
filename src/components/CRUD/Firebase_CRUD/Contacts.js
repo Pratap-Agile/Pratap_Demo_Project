@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ContactForm from "./ContactForm";
-import firebaseDb from "../../firebase";
+import firebaseDb from "../../../firebase";
 
 const Contacts = () => {
   const [data, setData] = useState({});

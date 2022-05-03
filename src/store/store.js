@@ -1,4 +1,3 @@
-// import { createStore, combineReducers } from 'redux'
 import { AuthReducer } from "./reducers/AuthReducer";
 import PostsReducer from "./reducers/PostsReducer";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";

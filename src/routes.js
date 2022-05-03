@@ -2,29 +2,29 @@ import React from "react";
 
 const Dashboard = React.lazy(() => import("./views/dashboard/Dashboard"));
 const Colors = React.lazy(() => import("./views/theme/colors/Colors"));
-const Post = React.lazy(() => import("./views/theme/colors/User/post/Post"));
+const Post = React.lazy(() => import("./components/CRUD/Redux_CRUD/Post/Post"));
 const Typography = React.lazy(() =>
   import("./views/theme/typography/Typography")
 );
 
 const CreatePost = React.lazy(() =>
-  import("./views/pages/CreatePost/CreatePost")
+  import("./components/CRUD/Redux_CRUD/CreatePost/CreatePost")
 );
-//display add
 const DisplatData = React.lazy(() =>
-  import("./views/pages/DisplayData/DiplayData")
+  import("./components/CRUD/Redux_CRUD/DisplayPost/DiplayData")
 );
-const EditPost = React.lazy(() => import("./views/pages/EditPost/EditPost"));
-const SinglePost = React.lazy(() =>
-  import("./views/pages/SinglePost/SinglePost")
+const EditPost = React.lazy(() =>
+  import("./components/CRUD/Redux_CRUD/EditPost/EditPost")
 );
 
 ////firebase add navigation only firebase
-const Add = React.lazy(() => import("./components/firebase_crud/AddEdit"));
-const View = React.lazy(() => import("./components/firebase_crud/View"));
-const AddEdit = React.lazy(() => import("./components/firebase_crud/AddEdit"));
+const Add = React.lazy(() => import("./components/CRUD/Firebase_CRUD/AddEdit"));
+const View = React.lazy(() => import("./components/CRUD/Firebase_CRUD/View"));
+const AddEdit = React.lazy(() =>
+  import("./components/CRUD/Firebase_CRUD/AddEdit")
+);
 const FirebaseRead = React.lazy(() =>
-  import("./components/firebase_crud/index")
+  import("./components/CRUD/Firebase_CRUD/index")
 );
 
 // Base
@@ -107,7 +107,6 @@ const routes = [
   { path: "/theme/createpost", name: "createpost", element: CreatePost },
   { path: "/theme/editpost/:id", name: "editpost", element: EditPost },
   { path: "/theme/displaydata/:id", name: "displaydata", element: DisplatData },
-  { path: "/theme/singlepost", name: "singlepost", element: SinglePost },
 
   //firebase path
   { path: "/firebase/add", name: "Add", element: Add },

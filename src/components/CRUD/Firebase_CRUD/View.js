@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import firebaseDb from "../../firebase";
+import firebaseDb from "../../../firebase";
 
 const View = () => {
   const currentId = useParams();

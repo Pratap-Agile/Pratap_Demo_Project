@@ -1,14 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Grid, Paper, TextField, Button } from "@material-ui/core";
+import { useRef } from "react";
+import { Grid, Paper, Button } from "@material-ui/core";
 import { Formik, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
-import axiosInstance from "src/services/axiosInstance";
-import {
-  displayPostAction,
-  updatePostAction,
-} from "../../../store/actions/PostActions";
+import { useNavigate } from "react-router";
 
-// import { getPost } from "../../../store/selectors/PostSelectors";
+// import { createPostAction } from "src/store/actions/PostActions";
+import { createPostAction } from "../../../../store/actions/PostActions";
 
 import {
   Checkbox,
@@ -21,83 +18,65 @@ import {
 } from "@contentful/f36-forms";
 import axios from "axios";
 
-import { useNavigate, useParams } from "react-router";
-
-function EditPost(props) {
-  const dispatch = useDispatch();
+const CreatePost = (props) => {
   const navigate = useNavigate();
-  const validateRequired = (value) => !value;
-  // const filesharhe_ref = useRef();
 
-  let { id } = useParams();
-  const [initialValues, setInitialValues] = useState({});
+  // const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const paperStyle = { padding: 20, width: 400, margin: "50px auto" };
   const headerStyle = { margin: 0 };
 
-  useEffect(async () => {
-    await axiosInstance.get(`crud/${id}`).then((res) =>
-      setInitialValues({
-        textInput: res.data.textInput,
-        textarea: res.data.textarea,
-        select: res.data.select,
-        radioGroup: res.data.radioGroup,
-        checkboxGroup: res.data.checkboxGroup,
-        // myfile: res.data.myfile,
-      })
-    );
-  }, [id]);
-  console.log(initialValues);
-  const onInputChange = (e) => {
-    setInitialValues({
-      ...initialValues,
-      [e.target.name]: e.target.value,
-    });
+  const initialValues = {
+    textInput: "",
+    textarea: "",
+    select: "",
+    radioGroup: "",
+    checkboxGroup: ["cricket"],
+    checkbox: false,
+    myfile: "",
   };
+
+  const validateRequired = (value) => !value;
   const filesharhe_ref = useRef();
 
-  const onSubmit = async (values) => {
-    dispatch(displayPostAction({ ...values, id }));
-    console.log("values", values);
-    navigate("/theme/post");
+  const onSubmit = (data) => {
+    const userData = {
+      textInput: data.textInput,
+      textarea: data.textarea,
+      select: data.select,
+      radioGroup: data.radioGroup,
+      checkboxGroup: data.checkboxGroup,
+      myfile: data.myfile,
+    };
+    console.log(userData);
+    dispatch(createPostAction(userData, props.history));
+    navigate("/theme/post/");
   };
+
   return (
     <Grid>
       <Paper style={paperStyle}>
         <Grid align="center">
-          <h2 style={headerStyle}>Update User Data</h2>
+          <h2 style={headerStyle}>User Form</h2>
         </Grid>
         <Formik
           onSubmit={onSubmit}
           initialValues={initialValues}
-          enableReinitialize={true}
+          // validationSchema={CreateSchema}
         >
-          {(props) => (
-            <Form onSubmit={props.handleSubmit}>
-              <Field
-                name="textInput"
-                validate={validateRequired}
-                onChange={(e) => onInputChange(e)}
-              >
-                {({ field, meta }) => (
-                  <FormControl isInvalid={Boolean(meta.touched && meta.error)}>
+          {({ handleSubmit }) => (
+            <Form onSubmit={handleSubmit}>
+              <Field name="textInput" validate={validateRequired}>
+                {({ field }) => (
+                  <FormControl>
                     <FormControl.Label>Name</FormControl.Label>
                     <TextInput {...field} />
-
-                    {meta.touched && meta.error && (
-                      <FormControl.ValidationMessage>
-                        {meta.error}
-                      </FormControl.ValidationMessage>
-                    )}
                   </FormControl>
                 )}
               </Field>
 
-              <Field
-                name="textarea"
-                validate={validateRequired}
-                onChange={(e) => onInputChange(e)}
-              >
+              <Field name="textarea" validate={validateRequired}>
                 {({ field, meta }) => (
                   <FormControl isInvalid={Boolean(meta.touched && meta.error)}>
                     <FormControl.Label>Address</FormControl.Label>
@@ -114,12 +93,8 @@ function EditPost(props) {
 
               <label> City : </label>
               <br />
-              <Field
-                name="select"
-                validate={validateRequired}
-                onChange={(e) => onInputChange(e)}
-              >
-                {({ field }) => (
+              <Field name="select" validate={validateRequired}>
+                {({ field, meta }) => (
                   <FormControl>
                     <Select {...field}>
                       <Select.Option value="" isDisabled Select>
@@ -129,17 +104,18 @@ function EditPost(props) {
                       <Select.Option value="Broda">Broda</Select.Option>
                       <Select.Option value="Mumbai">Mumbai</Select.Option>
                     </Select>
+                    {meta.touched && meta.error && (
+                      <FormControl.ValidationMessage>
+                        {meta.error}
+                      </FormControl.ValidationMessage>
+                    )}
                   </FormControl>
                 )}
               </Field>
 
               <label>Gender : </label>
               <br />
-              <Field
-                name="radioGroup"
-                validate={validateRequired}
-                onChange={(e) => onInputChange(e)}
-              >
+              <Field name="radioGroup" validate={validateRequired}>
                 {({ field }) => (
                   <Radio.Group {...field}>
                     <Radio value="male">Male</Radio>
@@ -151,11 +127,7 @@ function EditPost(props) {
               <br />
               <lable>Hobbies</lable>
               <br />
-              <Field
-                name="checkboxGroup"
-                validate={validateRequired}
-                onChange={(e) => onInputChange(e)}
-              >
+              <Field name="checkboxGroup" validate={validateRequired}>
                 {({ field }) => (
                   <Checkbox.Group {...field}>
                     <Checkbox value="reading">Reading</Checkbox>
@@ -184,5 +156,6 @@ function EditPost(props) {
       </Paper>
     </Grid>
   );
-}
-export default EditPost;
+};
+
+export default CreatePost;
