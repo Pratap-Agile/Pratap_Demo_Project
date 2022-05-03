@@ -1,65 +1,54 @@
 import React, { useEffect } from "react";
-import { Grid, Paper, Avatar, TextField, Button } from "@material-ui/core";
-import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
-
+import { Grid, Paper, TextField, Button } from "@material-ui/core";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
-// import axios from 'axios'
-
 import { connect, useDispatch, useSelector } from "react-redux";
 import {
-  signupAction,
-  loadingToggleAction,
+  loginAction,
+  loginConfirmedAction,
 } from "../../../store/actions/AuthActions";
 
-import Loader from "../../../components/Loader/Loader";
+import Loader from "../../Loader/Loader";
+import { useNavigate } from "react-router-dom";
 
-const Register = (props) => {
-  const navigate = useNavigate();
+const Login = (props) => {
+  let navigate = useNavigate();
   const isLoggedIn = useSelector((s) => s?.auth?.isLoggedIn);
+  console.log(isLoggedIn);
 
   const paperStyle = { padding: 20, width: 300, margin: "100px auto" };
   const headerStyle = { margin: 0 };
-  const avatarStyle = { backgroundColor: "#1bbd7e" };
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     isLoggedIn && navigate("/*");
   }, [isLoggedIn]);
 
   const initialValues = {
-    name: "",
     email: "",
     password: "",
-    confirmPassword: "",
   };
   const validationSchema = Yup.object().shape({
-    name: Yup.string().min(3, "It's too short").required("Required"),
     email: Yup.string().email("Enter valid email").required("Required"),
     password: Yup.string()
       .min(6, "Password minimum length should be 6")
       .required("Required"),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password")], "Password not matched")
-      .required("Required"),
   });
-  const onSubmit = (values, props) => {
-    dispatch(loadingToggleAction(true));
-    dispatch(signupAction(values.email, values.password, props.history));
-    console.log(values);
-    navigate("/register");
+
+  const onSubmit = (values) => {
+    dispatch(loginAction(values.email, values.password)).catch((err) => {
+      throw new Error("invalid login!");
+    });
   };
+
   return (
     <Grid>
       <Paper style={paperStyle}>
         <Grid align="center">
-          <Avatar style={avatarStyle}>
-            <AddCircleOutlineOutlinedIcon />
-          </Avatar>
           {props.showLoading && <Loader />}
-          <h2 style={headerStyle}>Register User</h2>
 
+          <h2 style={headerStyle}>Login</h2>
           {props.errorMessage && (
             <div className="bg-red-300 text-red-900 border border-red-900 p-1 my-2">
               {props.errorMessage}
@@ -81,14 +70,6 @@ const Register = (props) => {
               <Field
                 as={TextField}
                 fullWidth
-                name="name"
-                label="Name"
-                placeholder="Enter your name"
-                helperText={<ErrorMessage name="name" />}
-              />
-              <Field
-                as={TextField}
-                fullWidth
                 name="email"
                 label="Email"
                 placeholder="Enter your email"
@@ -104,22 +85,8 @@ const Register = (props) => {
                 placeholder="Enter your password"
                 helperText={<ErrorMessage name="password" />}
               />
-              <Field
-                as={TextField}
-                fullWidth
-                name="confirmPassword"
-                type="password"
-                label="Confirm Password"
-                placeholder="Confirm your password"
-                helperText={<ErrorMessage name="confirmPassword" />}
-              />
-              <Button
-                type="submit"
-                variant="contained"
-                //disabled={props.isSubmitting}
-                color="primary"
-              >
-                Register
+              <Button type="submit" variant="contained" color="primary">
+                Login
               </Button>
             </Form>
           )}
@@ -128,11 +95,11 @@ const Register = (props) => {
     </Grid>
   );
 };
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state) => {
   return {
     errorMessage: state.auth.errorMessage,
     successMessage: state.auth.successMessage,
     showLoading: state.auth.showLoading,
   };
 };
-export default connect(mapStateToProps)(Register);
+export default connect(mapStateToProps)(Login);

@@ -1,6 +1,6 @@
 import React, { Component, Suspense } from "react";
 import { HashRouter, Route, Routes } from "react-router-dom";
-import AuthGuard from "./Authentication/Auth";
+import AuthGuard from "./components/Authentication/Auth";
 import "./scss/style.scss";
 import * as ACTIONS from "./store/actions/AuthActions";
 import store from "./store/store";
@@ -19,8 +19,12 @@ const loading = (
 );
 
 const DefaultLayout = React.lazy(() => import("./layout/DefaultLayout"));
-const Login = React.lazy(() => import("./views/pages/login/Login"));
-const Register = React.lazy(() => import("./views/pages/register/Register"));
+const Login = React.lazy(() =>
+  import("./components/Authentication/Login/Login")
+);
+const Register = React.lazy(() =>
+  import("./components/Authentication/Register/Register")
+);
 
 class App extends Component {
   render() {
