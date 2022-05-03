@@ -14,19 +14,6 @@ export function signUp(email, password) {
   );
 }
 
-// export function login(email, password) {
-//   const postData = {
-//     email,
-//     password,
-//     returnSecureToken: true,
-//   };
-
-//   return axios.post(
-//     `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAcyNtrrzecEJPfecz8K5QCP7qlfqNuLso`,
-//     postData
-//   );
-// }
-
 export function formatError(errorResponse) {
   switch (errorResponse.error.message) {
     case "EMAIL_EXISTS":

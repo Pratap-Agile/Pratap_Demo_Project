@@ -9,7 +9,7 @@ import {
   getPostsAction,
 } from "src/store/actions/PostActions";
 import { useNavigate } from "react-router";
-import axiosInstance from "src/services/axiosInstance";
+import axiosInstance from "src/services/AxiosInstance";
 
 export default function Post(props) {
   const navigate = useNavigate();

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Grid, Paper, TextField, Button } from "@material-ui/core";
 import { Formik, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
-import axiosInstance from "src/services/axiosInstance";
+import axiosInstance from "src/services/AxiosInstance";
 import {
   displayPostAction,
   updatePostAction,

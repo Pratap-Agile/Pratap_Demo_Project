@@ -38,7 +38,6 @@ export function createPostAction(postData) {
         id: response.data.name,
       };
       dispatch(confirmedCreatePostAction(singlePost));
-      // history.push("/theme/post");
     });
   };
 }
@@ -73,7 +72,6 @@ export function confirmedUpdatePostAction(post) {
   };
 }
 
-//display add
 export function confirmedDisplayPostAction(post) {
   return {
     type: DISPLAY_GET_POSTS,
@@ -85,12 +83,9 @@ export function updatePostAction(post, history) {
   return (dispatch, getState) => {
     updatePost(post, post.id).then((reponse) => {
       dispatch(confirmedUpdatePostAction(post));
-      // history.push("/theme/post");
     });
   };
 }
-
-//display add
 
 export const displayPostAction = (user) => (dispatch) => {
   return displayPost(user, user.id)
