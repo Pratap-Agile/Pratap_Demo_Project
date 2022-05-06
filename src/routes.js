@@ -6,7 +6,7 @@ const CreatePost = React.lazy(() =>
   import("./components/CRUD/Redux_CRUD/CreatePost/CreatePost")
 );
 const DisplatData = React.lazy(() =>
-  import("./components/CRUD/Redux_CRUD/DisplayPost/DiplayData")
+  import("./components/CRUD/Redux_CRUD/DisplayPost/DisplayData")
 );
 const EditPost = React.lazy(() =>
   import("./components/CRUD/Redux_CRUD/EditPost/EditPost")
